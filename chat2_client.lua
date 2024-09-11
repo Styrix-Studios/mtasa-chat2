@@ -131,6 +131,23 @@ function onChatEnterButton(message)
   state.activeInputKeyButton = nil
 end
 
+-- ADDED KEY ESCAPE TO CLOSE CHAT
+addEventHandler( "onClientKey", root, function(button,press) 
+  if button == "escape" then
+      if not state.show then
+        return
+      end
+      if not state.activeInputKeyButton then
+        return
+      end
+      execute("hideInput()")
+      guiSetInputEnabled(false)
+      state.activeInputKeyButton = nil
+      cancelEvent()
+  end
+end)
+-- ADDED KEY ESCAPE TO CLOSE CHAT
+
 function onChatScrollStartButton(_, _, keyButton, definition)
   if state.activeScrollKeyButton then
     return
